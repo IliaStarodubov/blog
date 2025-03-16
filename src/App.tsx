@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-// import './App.css';
 
 const Div = styled.div`
 	text-align: center;
