@@ -1,5 +1,5 @@
 import { ROLE } from '../constants/role';
-import { removeComment } from './sessions/removeComment';
+import { removeComment } from './session/removeComment';
 
 interface Session {
 	logout(): void;

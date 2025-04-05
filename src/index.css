@@ -39,10 +39,9 @@ a:active {
 }
 
 .test {
-	display: flex;
-	justify-content: space-between;
+	background-color: rgb(172, 120, 120);
+	margin: 10px 0 0;
+	padding: 10px;
+	width: 100%;
 	align-items: center;
-	height: 120px;
-	font-weight: bold;
-	border-top: 1px solid gray;
 }
