@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { Header } from './components/header/header';
 import { Footer } from './components/footer/footer';
 import { Authorization } from './pages/authorization/authorization';
+import { Registration } from './pages/regisration/registration';
 
 const Content = styled.div`
 	padding: 120px 0;
@@ -26,7 +27,7 @@ const Blog = () => {
 				<Routes>
 					<Route path="/" element={<div>Главная страница</div>} />
 					<Route path="/login" element={<Authorization />} />
-					<Route path="/register" element={<div>Регистрация</div>} />
+					<Route path="/register" element={<Registration />} />
 					<Route path="/users" element={<div>Пользователи</div>} />
 					<Route path="/post" element={<div>Новая статья</div>} />
 					<Route path="/post/:postId" element={<div>Статья</div>} />
