@@ -27,11 +27,11 @@ const RightAligned = styled.div`
 	align-items: center;
 `;
 
-const StyledIcon = styled.div`
-	&: hover {
-		cursor: pointer;
-	}
-`;
+// const StyledIcon = styled.div`
+// 	&: hover {
+// 		cursor: pointer;
+// 	}
+// `;
 
 const UserName = styled.div`
 	font-size: 20px;
@@ -55,20 +55,24 @@ const ControlPanelContainer = ({ className }: { className?: string }) => {
 				) : (
 					<>
 						<UserName>{login}</UserName>
-						<StyledIcon onClick={() => dispath(logout(session))}>
-							<Icon
-								path={PATH_LOGOUT}
-								path1={PATH_LOGOUT2}
-								margin="8px 0 0 9px"
-							/>
-						</StyledIcon>
+
+						<Icon
+							onClick={() => dispath(logout(session))}
+							path={PATH_LOGOUT}
+							path1={PATH_LOGOUT2}
+							margin="8px 0 0 9px"
+						/>
 					</>
 				)}
 			</RightAligned>
 			<RightAligned>
-				<StyledIcon onClick={() => navigate(-1)}>
-					<Icon path={PATH_ARROW} path1={PATH_ARROW1} margin="8px 0 0 9px" />
-				</StyledIcon>
+				<Icon
+					onClick={() => navigate(-1)}
+					path={PATH_ARROW}
+					path1={PATH_ARROW1}
+					margin="8px 0 0 9px"
+				/>
+
 				<Link to="/post">
 					<Icon
 						path={PATH_NOTE}

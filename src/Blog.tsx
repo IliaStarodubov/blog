@@ -4,8 +4,9 @@ import { Header } from './components/header/header';
 import { Footer } from './components/footer/footer';
 import { Authorization } from './pages/authorization/authorization';
 import { Registration } from './pages/regisration/registration';
+import { Users } from './pages/users/users';
 
-const Content = styled.div`
+const Page = styled.div`
 	padding: 120px 0;
 `;
 
@@ -23,17 +24,17 @@ const Blog = () => {
 	return (
 		<AppColumn>
 			<Header />
-			<Content>
+			<Page>
 				<Routes>
 					<Route path="/" element={<div>Главная страница</div>} />
 					<Route path="/login" element={<Authorization />} />
 					<Route path="/register" element={<Registration />} />
-					<Route path="/users" element={<div>Пользователи</div>} />
+					<Route path="/users" element={<Users />} />
 					<Route path="/post" element={<div>Новая статья</div>} />
 					<Route path="/post/:postId" element={<div>Статья</div>} />
 					<Route path="*" element={<div>Ошибка</div>} />
 				</Routes>
-			</Content>
+			</Page>
 			<Footer />
 		</AppColumn>
 	);

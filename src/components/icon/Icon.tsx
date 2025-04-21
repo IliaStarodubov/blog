@@ -1,22 +1,25 @@
 import styled from 'styled-components';
 
 interface IconContainerProps {
+	onClick?: () => void;
 	className?: string;
 	size?: number;
 	path?: string;
 	path1?: string;
 	path2?: string;
 	margin?: string;
+	disabled?: boolean;
 }
 
 const IconContainer = ({
+	onClick,
 	className,
 	size = 35,
 	path,
 	path1,
 	path2,
 }: IconContainerProps) => (
-	<div className={className}>
+	<div className={className} onClick={onClick}>
 		<svg
 			xmlns="http://www.w3.org/2000/svg"
 			width={`${size}`}
@@ -33,7 +36,13 @@ const IconContainer = ({
 
 export const Icon = styled(IconContainer)`
 	margin: ${({ margin }) => margin};
+	color: ${({ disabled }) => (disabled ? '#ccc' : '#000')};
+
 	&:active {
 		color: #c0144e;
+	}
+
+	&: hover {
+		cursor: pointer;
 	}
 `;
