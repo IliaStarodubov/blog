@@ -64,6 +64,7 @@ const RegistrationCotainer = ({ className }: { className?: string }) => {
 			}
 
 			dispath(setUser(res));
+			sessionStorage.setItem('userData', JSON.stringify(res));
 		});
 	};
 

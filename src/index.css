@@ -37,11 +37,3 @@ a {
 a:active {
 	color: #c0144e;
 }
-
-.test {
-	background-color: rgb(172, 120, 120);
-	margin: 10px 0 0;
-	padding: 10px;
-	width: 100%;
-	align-items: center;
-}

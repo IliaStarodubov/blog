@@ -45,6 +45,11 @@ const ControlPanelContainer = ({ className }: { className?: string }) => {
 	const login = useSelector(selectUserLogin);
 	const session = useSelector(selectUserSession);
 
+	const onLogout = () => {
+		dispath(logout(session));
+		sessionStorage.removeItem('userData');
+	};
+
 	return (
 		<div className={className}>
 			<RightAligned>
@@ -57,7 +62,7 @@ const ControlPanelContainer = ({ className }: { className?: string }) => {
 						<UserName>{login}</UserName>
 
 						<Icon
-							onClick={() => dispath(logout(session))}
+							onClick={onLogout}
 							path={PATH_LOGOUT}
 							path1={PATH_LOGOUT2}
 							margin="8px 0 0 9px"
