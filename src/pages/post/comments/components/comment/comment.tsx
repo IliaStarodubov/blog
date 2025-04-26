@@ -6,6 +6,9 @@ import {
 	PATH_USER,
 	PATH_USER1,
 } from '../../../../../constants/iconsPath';
+import { useDispatch } from 'react-redux';
+import { useServerRequest } from '../../../../../hooks';
+import { CLOSE_MODAL, openModal, removeCommentAsync } from '../../../../../actions';
 
 const CommentContainer = ({
 	className,
@@ -13,13 +16,31 @@ const CommentContainer = ({
 	autor,
 	content,
 	publishedAt,
+	postId,
 }: {
 	className?: string;
 	id: string;
+	postId: string;
 	autor: string;
 	content: string;
 	publishedAt: string;
 }) => {
+	const dispatch = useDispatch();
+	const requestServer = useServerRequest();
+
+	const onCommentRemove = (id: string) => {
+		dispatch(
+			openModal({
+				text: 'Удалить комментарий?',
+				onConfirm: () => {
+					dispatch(removeCommentAsync(requestServer, postId, id));
+					dispatch(CLOSE_MODAL);
+				},
+				onCancel: () => dispatch(CLOSE_MODAL),
+			}),
+		);
+	};
+
 	return (
 		<div className={className}>
 			<div className="comment">
@@ -41,7 +62,7 @@ const CommentContainer = ({
 				<div className="comment-text">{content}</div>
 			</div>
 			<Icon
-				onClick={() => {}}
+				onClick={() => onCommentRemove(id)}
 				size={25}
 				path={PATH_DELETE}
 				margin="14px 0 0 10px;"

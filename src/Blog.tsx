@@ -9,6 +9,7 @@ import { Post } from './pages/post/post';
 import { useLayoutEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { setUser } from './actions';
+import { Modal } from './components/modal/modal';
 
 const Page = styled.div`
 	padding: 120px 0 20px;
@@ -54,6 +55,7 @@ const Blog = () => {
 				</Routes>
 			</Page>
 			<Footer />
+			<Modal />
 		</AppColumn>
 	);
 };
