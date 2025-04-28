@@ -7,6 +7,8 @@ import {
 	PATH_EDIT,
 	PATH_EDIT1,
 } from '../../../constants/iconsPath';
+import { SpecialPanel } from '../specialPanel/specialPanel';
+import { useNavigate } from 'react-router-dom';
 
 interface PostContentState {
 	id: string;
@@ -23,32 +25,26 @@ const PostContentContainer = ({
 	className?: string;
 	post: PostContentState;
 }) => {
+	const navigate = useNavigate();
+
 	return (
 		<div className={className}>
 			<img src={imageUrl || undefined} alt={title} />
 			<H2>{title}</H2>
-			<div className="special-panel">
-				<div className="published_at">
-					<Icon path={PATH_CALENDAR} size={25} margin="0 7px 0 0" />
-					{publishedAt}
-				</div>
-				<div className="buttons">
+			<SpecialPanel
+				publishedAt={publishedAt}
+				margin="-25px 0 15px 0"
+				editButton={
 					<Icon
-						onClick={() => {}}
+						onClick={() => navigate(`/post/${id}/edit`)}
 						size={25}
 						path={PATH_EDIT}
 						path1={PATH_EDIT1}
 						margin="0 13px 0 0"
 					/>
-					<Icon
-						onClick={() => {}}
-						size={25}
-						path={PATH_DELETE}
-						margin="0 7px 0 0"
-					/>
-				</div>
-			</div>
-			<div>{content}</div>
+				}
+			/>
+			<div className="post-text">{content}</div>
 		</div>
 	);
 };
@@ -60,18 +56,8 @@ export const PostContent = styled(PostContentContainer)`
 		margin: 0 20px 10px 0;
 	}
 
-	& .special-panel {
-		margin: -25px 0 15px 0;
-		display: flex;
-		justify-content: space-between;
-	}
-
-	& .published_at {
+	& .post-text {
 		font-size: 18px;
-		display: flex;
-	}
-
-	& .buttons {
-		display: flex;
+		white-space: pre-line;
 	}
 `;
