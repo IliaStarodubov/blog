@@ -54,6 +54,7 @@ const UserRowContainer = ({
 						))}
 					</select>
 					<Icon
+						isButton={true}
 						disabled={isSaveBntDisabled}
 						onClick={() => onRoleSave(id, selectedRoleId)}
 						path={PATH_SAVE}
@@ -62,7 +63,12 @@ const UserRowContainer = ({
 					/>
 				</div>
 			</TableRow>
-			<Icon onClick={onUserRemove} path={PATH_DELETE} margin="8px 0 0 9px" />
+			<Icon
+				isButton={true}
+				onClick={onUserRemove}
+				path={PATH_DELETE}
+				margin="8px 0 0 9px"
+			/>
 		</div>
 	);
 };

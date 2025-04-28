@@ -16,7 +16,7 @@ const SmallText = styled.div`
 
 const LogoContainer = ({ className }: { className?: string }) => (
 	<Link className={className} to="/">
-		<Icon size={80} path={PATH_CODE} margin="0 10px 0 0" />
+		<Icon isButton={true} size={80} path={PATH_CODE} margin="0 10px 0 0" />
 		<div>
 			<LargeText>Блог</LargeText>
 			<SmallText>веб-разработчика</SmallText>

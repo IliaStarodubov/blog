@@ -11,11 +11,11 @@ import { SpecialPanel } from '../specialPanel/specialPanel';
 import { useNavigate } from 'react-router-dom';
 
 interface PostContentState {
-	id: string;
-	title: string;
+	id?: string;
+	title?: string;
 	imageUrl?: string | undefined;
-	publishedAt: string;
-	content: string;
+	publishedAt?: string;
+	content?: string;
 }
 
 const PostContentContainer = ({
@@ -32,10 +32,12 @@ const PostContentContainer = ({
 			<img src={imageUrl || undefined} alt={title} />
 			<H2>{title}</H2>
 			<SpecialPanel
+				id={id}
 				publishedAt={publishedAt}
 				margin="-25px 0 15px 0"
 				editButton={
 					<Icon
+						isButton={true}
 						onClick={() => navigate(`/post/${id}/edit`)}
 						size={25}
 						path={PATH_EDIT}

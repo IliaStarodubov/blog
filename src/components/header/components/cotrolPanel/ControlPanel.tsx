@@ -72,6 +72,7 @@ const ControlPanelContainer = ({ className }: { className?: string }) => {
 			</RightAligned>
 			<RightAligned>
 				<Icon
+					isButton={true}
 					onClick={() => navigate(-1)}
 					path={PATH_ARROW}
 					path1={PATH_ARROW1}
@@ -80,6 +81,7 @@ const ControlPanelContainer = ({ className }: { className?: string }) => {
 
 				<Link to="/post">
 					<Icon
+						isButton={true}
 						path={PATH_NOTE}
 						path1={PATH_NOTE1}
 						path2={PATH_NOTE2}
@@ -87,8 +89,9 @@ const ControlPanelContainer = ({ className }: { className?: string }) => {
 						margin="8px 0 0 9px"
 					/>
 				</Link>
+
 				<Link to="/users">
-					<Icon path={PATH_PEOPLE} margin="8px 0 0 9px" />
+					<Icon isButton={true} path={PATH_PEOPLE} margin="8px 0 0 9px" />
 				</Link>
 			</RightAligned>
 		</div>

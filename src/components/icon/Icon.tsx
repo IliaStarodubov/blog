@@ -9,6 +9,7 @@ interface IconContainerProps {
 	path2?: string;
 	margin?: string;
 	disabled?: boolean;
+	isButton?: boolean;
 }
 
 const IconContainer = ({
@@ -18,6 +19,7 @@ const IconContainer = ({
 	path,
 	path1,
 	path2,
+	isButton,
 }: IconContainerProps) => (
 	<div className={className} onClick={onClick}>
 		<svg
@@ -39,10 +41,10 @@ export const Icon = styled(IconContainer)`
 	color: ${({ disabled }) => (disabled ? '#ccc' : '#000')};
 
 	&:active {
-		color: #c0144e;
+		color: ${({ isButton }) => (isButton ? '#c0144e' : '#000')};
 	}
 
 	&: hover {
-		cursor: pointer;
+		cursor: ${({ isButton }) => (isButton ? 'pointer' : 'default')};
 	}
 `;

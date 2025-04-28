@@ -63,7 +63,7 @@ export const Modal = styled(ModalContainer)`
 		background-color: #f9f9f9;
 		font-size: 18px;
 		border-radius: 10px;
-		box-shadow: 0px 0px 36px 17px #c0144e1f;
+		box-shadow: 0px 0px 36px 17px #ffffff40;
 	}
 
 	& .buttons {

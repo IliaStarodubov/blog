@@ -62,6 +62,7 @@ const CommentContainer = ({
 				<div className="comment-text">{content}</div>
 			</div>
 			<Icon
+				isButton={true}
 				onClick={() => onCommentRemove(id)}
 				size={25}
 				path={PATH_DELETE}

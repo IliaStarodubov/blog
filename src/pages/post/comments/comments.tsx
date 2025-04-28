@@ -37,6 +37,7 @@ const CommentsContainer = ({
 					onChange={({ target }) => setNewComment(target.value)}
 				></textarea>
 				<Icon
+					isButton={true}
 					onClick={() => onNewCommentAdd(userId, postId, newComment)}
 					size={25}
 					path={PATH_SEND}
