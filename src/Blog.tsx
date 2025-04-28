@@ -10,6 +10,7 @@ import { useLayoutEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { setUser } from './actions';
 import { Modal } from './components/modal/modal';
+import { Main } from './pages/main/main';
 
 const Page = styled.div`
 	padding: 120px 0 20px;
@@ -45,7 +46,7 @@ const Blog = () => {
 			<Header />
 			<Page>
 				<Routes>
-					<Route path="/" element={<div>Главная страница</div>} />
+					<Route path="/" element={<Main />} />
 					<Route path="/login" element={<Authorization />} />
 					<Route path="/register" element={<Registration />} />
 					<Route path="/users" element={<Users />} />
