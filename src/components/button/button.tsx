@@ -35,8 +35,19 @@ export const Button = styled(ButtonContainer)`
 	visibility: visible;
 	-webkit-transition: all 0.3s ease;
 
+	&:disabled {
+		background-color: rgb(79 79 79 / 40%);
+
+		&:hover {
+			background: #cccccc;
+		}
+	}
+
+	&:active {
+		border-radius: 0px;
+	}
+
 	&:hover {
-		transition: all 0.3s ease;
 		background-color: rgba(94, 12, 44, 0.8);
 	}
 `;
