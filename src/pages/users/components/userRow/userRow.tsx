@@ -10,7 +10,7 @@ interface UserRowContainerProps {
 	login: string;
 	registredAt: string;
 	roleId: number;
-	roles: [];
+	roles: never[];
 	id: string;
 	onUserRemove: () => void;
 }

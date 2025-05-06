@@ -7,13 +7,10 @@ const Div = styled.div`
 	flex-direction: column;
 `;
 
-export const Content = ({ children, error }) => {
-	return error ? (
+export const Error = ({ error }) =>
+	error && (
 		<>
 			<H2>Ошибка</H2>
 			<Div>{error}</Div>
 		</>
-	) : (
-		children
 	);
-};

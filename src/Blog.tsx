@@ -11,6 +11,8 @@ import { useDispatch } from 'react-redux';
 import { setUser } from './actions';
 import { Modal } from './components/modal/modal';
 import { Main } from './pages/main/main';
+import { Error } from './components/error/error';
+import { ERROR } from './constants/error';
 
 const Page = styled.div`
 	padding: 120px 0 20px;
@@ -53,7 +55,7 @@ const Blog = () => {
 					<Route path="/post" element={<Post />} />
 					<Route path="/post/:id" element={<Post />} />
 					<Route path="/post/:id/edit" element={<Post />} />
-					<Route path="*" element={<div>Ошибка</div>} />
+					<Route path="*" element={<Error error={ERROR.PAGE_NOT_EXIST} />} />
 				</Routes>
 			</Page>
 			<Footer />

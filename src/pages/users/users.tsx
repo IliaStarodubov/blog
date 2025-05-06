@@ -3,8 +3,11 @@ import { TableRow, UserRow } from './components';
 import { useServerRequest } from '../../hooks';
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { Content } from '../../components/content/content';
+import { PrivateContent } from '../../components/trivate-content/private-content';
 import { ROLE } from '../../constants/role';
+import { checkAccess } from '../../utils/checkAccess';
+import { useSelector } from 'react-redux';
+import { selectUserRole } from '../../selectors';
 
 const UsersContainer = ({ className }: { className?: string }) => {
 	const [users, setUsers] = useState<[]>([]);
@@ -12,8 +15,13 @@ const UsersContainer = ({ className }: { className?: string }) => {
 	const [shouldUpdateUserList, setShouldUpdateUserList] = useState<boolean>(false);
 	const [errorMessage, setErrorMessage] = useState(null);
 	const requestServer = useServerRequest();
+	const userRole = useSelector(selectUserRole);
 
 	useEffect(() => {
+		if (!checkAccess([ROLE.ADMIN], userRole)) {
+			return;
+		}
+
 		Promise.all([requestServer('fetchUsers'), requestServer('fetchRoles')]).then(
 			([usersRes, rolesRes]) => {
 				if (usersRes.error || rolesRes.error) {
@@ -25,17 +33,21 @@ const UsersContainer = ({ className }: { className?: string }) => {
 				setRoles(rolesRes.res);
 			},
 		);
-	}, [requestServer, shouldUpdateUserList]);
+	}, [requestServer, shouldUpdateUserList, userRole]);
 
 	const onUserRemove = (userId: string) => {
+		if (!checkAccess([ROLE.ADMIN], userRole)) {
+			return;
+		}
+
 		requestServer('removeUser', userId).then(() => {
 			setShouldUpdateUserList(!shouldUpdateUserList);
 		});
 	};
 
 	return (
-		<div className={className}>
-			<Content error={errorMessage}>
+		<PrivateContent access={[ROLE.ADMIN]} serverError={errorMessage}>
+			<div className={className}>
 				<H2>Пользователи</H2>
 				<div>
 					<TableRow>
@@ -58,8 +70,8 @@ const UsersContainer = ({ className }: { className?: string }) => {
 						/>
 					))}
 				</div>
-			</Content>
-		</div>
+			</div>
+		</PrivateContent>
 	);
 };
 

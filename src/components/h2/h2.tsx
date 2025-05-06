@@ -12,4 +12,5 @@ const H2Container = ({ className, children }: H2ContainerProps) => (
 
 export const H2 = styled(H2Container)`
 	margin: 40px;
+	text-align: center;
 `;
