@@ -112,6 +112,6 @@ export const PostForm = styled(PostFormContainer)`
 		font-size: 18px;
 		white-space: pre-line;
 		border-radius: 15px;
-		border: 1px solid #eee;
+		border: 1px solid #a5a5a5;
 	}
 `;
