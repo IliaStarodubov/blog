@@ -20,18 +20,13 @@ import {
 } from '../../../../selectors';
 import { ROLE } from '../../../../constants/role';
 import { logout } from '../../../../actions';
+import { checkAccess } from '../../../../utils/checkAccess';
 
 const RightAligned = styled.div`
 	display: flex;
 	justify-content: flex-end;
 	align-items: center;
 `;
-
-// const StyledIcon = styled.div`
-// 	&: hover {
-// 		cursor: pointer;
-// 	}
-// `;
 
 const UserName = styled.div`
 	font-size: 20px;
@@ -49,6 +44,8 @@ const ControlPanelContainer = ({ className }: { className?: string }) => {
 		dispath(logout(session));
 		sessionStorage.removeItem('userData');
 	};
+
+	const isAdmin = checkAccess([ROLE.ADMIN], roleId);
 
 	return (
 		<div className={className}>
@@ -79,20 +76,28 @@ const ControlPanelContainer = ({ className }: { className?: string }) => {
 					margin="8px 0 0 9px"
 				/>
 
-				<Link to="/post">
-					<Icon
-						isButton={true}
-						path={PATH_NOTE}
-						path1={PATH_NOTE1}
-						path2={PATH_NOTE2}
-						size={30}
-						margin="8px 0 0 9px"
-					/>
-				</Link>
+				{isAdmin && (
+					<>
+						<Link to="/post">
+							<Icon
+								isButton={true}
+								path={PATH_NOTE}
+								path1={PATH_NOTE1}
+								path2={PATH_NOTE2}
+								size={30}
+								margin="8px 0 0 9px"
+							/>
+						</Link>
 
-				<Link to="/users">
-					<Icon isButton={true} path={PATH_PEOPLE} margin="8px 0 0 9px" />
-				</Link>
+						<Link to="/users">
+							<Icon
+								isButton={true}
+								path={PATH_PEOPLE}
+								margin="8px 0 0 9px"
+							/>
+						</Link>
+					</>
+				)}
 			</RightAligned>
 		</div>
 	);

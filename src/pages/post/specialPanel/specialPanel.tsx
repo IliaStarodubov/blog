@@ -2,10 +2,13 @@ import styled from 'styled-components';
 import { Icon } from '../../../components/icon/icon';
 import { PATH_CALENDAR, PATH_DELETE } from '../../../constants/iconsPath';
 import { ReactNode } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { CLOSE_MODAL, openModal, removePostAsync } from '../../../actions';
 import { useServerRequest } from '../../../hooks';
 import { useNavigate } from 'react-router-dom';
+import { ROLE } from '../../../constants/role';
+import { checkAccess } from '../../../utils/checkAccess';
+import { selectUserRole } from '../../../selectors';
 
 const SpecialPanelContainer = ({
 	className,
@@ -14,13 +17,14 @@ const SpecialPanelContainer = ({
 	editButton,
 }: {
 	className?: string;
-	id: string;
+	id?: string;
 	publishedAt?: string;
 	editButton?: ReactNode;
 }) => {
 	const dispatch = useDispatch();
 	const requestServer = useServerRequest();
 	const navigate = useNavigate();
+	const userRole = useSelector(selectUserRole);
 
 	const onPostRemove = (id: string) => {
 		dispatch(
@@ -37,6 +41,8 @@ const SpecialPanelContainer = ({
 		);
 	};
 
+	const isAdmin = checkAccess([ROLE.ADMIN], userRole);
+
 	return (
 		<div className={className}>
 			<div className="published_at">
@@ -45,18 +51,20 @@ const SpecialPanelContainer = ({
 				)}
 				{publishedAt}
 			</div>
-			<div className="buttons">
-				{editButton}
-				{publishedAt && (
-					<Icon
-						isButton={true}
-						onClick={() => onPostRemove(id)}
-						size={25}
-						path={PATH_DELETE}
-						margin="0 7px 0 0"
-					/>
-				)}
-			</div>
+			{isAdmin && (
+				<div className="buttons">
+					{editButton}
+					{publishedAt && (
+						<Icon
+							isButton={true}
+							onClick={() => onPostRemove(id)}
+							size={25}
+							path={PATH_DELETE}
+							margin="0 7px 0 0"
+						/>
+					)}
+				</div>
+			)}
 		</div>
 	);
 };

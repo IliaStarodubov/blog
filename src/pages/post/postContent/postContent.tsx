@@ -1,12 +1,7 @@
 import styled from 'styled-components';
 import { H2 } from '../../../components/h2/h2';
 import { Icon } from '../../../components/icon/icon';
-import {
-	PATH_CALENDAR,
-	PATH_DELETE,
-	PATH_EDIT,
-	PATH_EDIT1,
-} from '../../../constants/iconsPath';
+import { PATH_EDIT, PATH_EDIT1 } from '../../../constants/iconsPath';
 import { SpecialPanel } from '../specialPanel/specialPanel';
 import { useNavigate } from 'react-router-dom';
 

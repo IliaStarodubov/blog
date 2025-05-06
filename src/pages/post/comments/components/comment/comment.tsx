@@ -6,9 +6,11 @@ import {
 	PATH_USER,
 	PATH_USER1,
 } from '../../../../../constants/iconsPath';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useServerRequest } from '../../../../../hooks';
 import { CLOSE_MODAL, openModal, removeCommentAsync } from '../../../../../actions';
+import { selectUserRole } from '../../../../../selectors';
+import { ROLE } from '../../../../../constants/role';
 
 const CommentContainer = ({
 	className,
@@ -27,6 +29,7 @@ const CommentContainer = ({
 }) => {
 	const dispatch = useDispatch();
 	const requestServer = useServerRequest();
+	const userRole = useSelector(selectUserRole);
 
 	const onCommentRemove = (id: string) => {
 		dispatch(
@@ -40,6 +43,8 @@ const CommentContainer = ({
 			}),
 		);
 	};
+
+	const isAdminOrModerator = [ROLE.ADMIN, ROLE.MODERATOR].includes(userRole);
 
 	return (
 		<div className={className}>
@@ -61,13 +66,15 @@ const CommentContainer = ({
 				</div>
 				<div className="comment-text">{content}</div>
 			</div>
-			<Icon
-				isButton={true}
-				onClick={() => onCommentRemove(id)}
-				size={25}
-				path={PATH_DELETE}
-				margin="14px 0 0 10px;"
-			/>
+			{isAdminOrModerator && (
+				<Icon
+					isButton={true}
+					onClick={() => onCommentRemove(id)}
+					size={25}
+					path={PATH_DELETE}
+					margin="14px 0 0 10px;"
+				/>
+			)}
 		</div>
 	);
 };

@@ -13,6 +13,13 @@
       "password": "qweasd123",
       "registred_at": "2041-01-18 18:51",
       "role_id": 1
+    },
+    {
+      "login": "maxim",
+      "password": "qweasd123",
+      "registred_at": "2064-06-10 16:01",
+      "role_id": 2,
+      "id": "z1tIjJD"
     }
   ],
   "roles": [
@@ -189,6 +196,41 @@
       "post_id": "002",
       "published_at": "2056-10-01 22:08",
       "content": "Первый комментарий 3"
+    },
+    {
+      "autor_id": "07fe",
+      "post_id": "002",
+      "published_at": "2050-08-02 23:52",
+      "content": "Комментарий от Сергея",
+      "id": "tCtAXi4"
+    },
+    {
+      "autor_id": "07fe",
+      "post_id": "003",
+      "published_at": "2056-09-03 00:56",
+      "content": "Комментарий 1\n",
+      "id": "B6U3B7W"
+    },
+    {
+      "autor_id": "07fe",
+      "post_id": "003",
+      "published_at": "2051-06-05 14:13",
+      "content": "Комментарий 2",
+      "id": "YWPut6W"
+    },
+    {
+      "autor_id": "07fe",
+      "post_id": "003",
+      "published_at": "2057-02-06 07:18",
+      "content": "Комментарий 3",
+      "id": "p-dd_Cg"
+    },
+    {
+      "autor_id": "z1tIjJD",
+      "post_id": "003",
+      "published_at": "2050-05-05 01:26",
+      "content": "Комментарий 4\n",
+      "id": "jk8WPVL"
     }
   ],
   "sessions": [
@@ -268,6 +310,17 @@
         "registredAt": "2064-03-03 11:11",
         "roleId": 0
       }
+    },
+    {
+      "hash": "0.02006114250640234075717671657912433147430419921875",
+      "user": {
+        "id": "001",
+        "login": "ilya",
+        "password": "qweasd123",
+        "registredAt": "2064-03-03 11:11",
+        "roleId": 0
+      },
+      "id": "XKV8kQO"
     }
   ]
 }

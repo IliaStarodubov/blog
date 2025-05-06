@@ -4,9 +4,10 @@ import { Icon } from '../../../components/icon/icon';
 import { PATH_SEND } from '../../../constants/iconsPath';
 import { Comment } from './components/comment/comment';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectUserId } from '../../../selectors';
+import { selectUserId, selectUserRole } from '../../../selectors';
 import { useServerRequest } from '../../../hooks';
 import { addCommentAsync } from '../../../actions';
+import { ROLE } from '../../../constants/role';
 
 const CommentsContainer = ({
 	className,
@@ -20,6 +21,7 @@ const CommentsContainer = ({
 	const [newComment, setNewComment] = useState('');
 	const dispatch = useDispatch();
 	const userId = useSelector(selectUserId);
+	const userRole = useSelector(selectUserRole);
 	const requestServer = useServerRequest();
 
 	const onNewCommentAdd = (userId: string | null, postId: string, content: string) => {
@@ -27,23 +29,27 @@ const CommentsContainer = ({
 		setNewComment('');
 	};
 
+	const isGuest = userRole === ROLE.GUEST;
+
 	return (
 		<div className={className}>
-			<div className="new-comment">
-				<textarea
-					name="comment"
-					value={newComment}
-					placeholder="Комментарий..."
-					onChange={({ target }) => setNewComment(target.value)}
-				></textarea>
-				<Icon
-					isButton={true}
-					onClick={() => onNewCommentAdd(userId, postId, newComment)}
-					size={25}
-					path={PATH_SEND}
-					margin="0 0 0 10px"
-				/>
-			</div>
+			{!isGuest && (
+				<div className="new-comment">
+					<textarea
+						name="comment"
+						value={newComment}
+						placeholder="Комментарий..."
+						onChange={({ target }) => setNewComment(target.value)}
+					></textarea>
+					<Icon
+						isButton={true}
+						onClick={() => onNewCommentAdd(userId, postId, newComment)}
+						size={25}
+						path={PATH_SEND}
+						margin="0 0 0 10px"
+					/>
+				</div>
+			)}
 
 			<div className="comments">
 				{comments.map(({ id, autor, content, publishedAt, postId }) => (
@@ -81,5 +87,9 @@ export const Comments = styled(CommentsContainer)`
 		border-radius: 10px;
 		border: none;
 		box-shadow: 0px 0px 36px 17px rgb(233 233 233 / 82%);
+	}
+
+	& .comments {
+		// width: 545px;
 	}
 `;
