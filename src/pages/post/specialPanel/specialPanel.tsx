@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Icon } from '../../../components/icon/icon';
+import { Icon } from '../../../components/icon/Icon';
 import { PATH_CALENDAR, PATH_DELETE } from '../../../constants/iconsPath';
 import { ReactNode } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -9,19 +9,23 @@ import { useNavigate } from 'react-router-dom';
 import { ROLE } from '../../../constants/role';
 import { checkAccess } from '../../../utils/checkAccess';
 import { selectUserRole } from '../../../selectors';
+import { AppDispatch } from '../../../store';
+
+interface SpecialPanelContainerProps {
+	className?: string;
+	id: string;
+	publishedAt?: string;
+	editButton?: ReactNode;
+	margin?: string;
+}
 
 const SpecialPanelContainer = ({
 	className,
 	id,
 	publishedAt,
 	editButton,
-}: {
-	className?: string;
-	id?: string;
-	publishedAt?: string;
-	editButton?: ReactNode;
-}) => {
-	const dispatch = useDispatch();
+}: SpecialPanelContainerProps) => {
+	const dispatch = useDispatch<AppDispatch>();
 	const requestServer = useServerRequest();
 	const navigate = useNavigate();
 	const userRole = useSelector(selectUserRole);

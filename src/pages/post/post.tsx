@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect, useState } from 'react';
+import { SetStateAction, useEffect, useLayoutEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { PostContent } from './postContent/postContent';
 import { Comments } from './comments/comments';
@@ -11,11 +11,12 @@ import { PostForm } from './postForm/postForm';
 import { Error } from '../../components/error/error';
 import { PrivateContent } from '../../components/trivate-content/private-content';
 import { ROLE } from '../../constants/role';
+import { AppDispatch } from '../../store';
 
 const PostContainer = ({ className }: { className?: string }) => {
 	const [isLoading, setIsLoading] = useState(true);
 	const [error, setError] = useState(null);
-	const dispatch = useDispatch();
+	const dispatch = useDispatch<AppDispatch>();
 	const params = useParams();
 	const isCreating = useMatch('/post');
 	const isEditing = useMatch('/post/:id/edit');
@@ -32,10 +33,12 @@ const PostContainer = ({ className }: { className?: string }) => {
 			return;
 		}
 
-		dispatch(loadPostAsync(requestServer, params.id)).then((postData) => {
-			setError(postData.error);
-			setIsLoading(false);
-		});
+		dispatch(loadPostAsync(requestServer, params.id)).then(
+			(postData: { error: SetStateAction<null> }) => {
+				setError(postData.error);
+				setIsLoading(false);
+			},
+		);
 	}, [dispatch, params.id, requestServer, isCreating]);
 
 	if (isLoading) {

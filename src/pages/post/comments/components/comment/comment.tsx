@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Icon } from '../../../../../components/icon/icon';
+import { Icon } from '../../../../../components/icon/Icon';
 import {
 	PATH_CALENDAR,
 	PATH_DELETE,
@@ -11,6 +11,16 @@ import { useServerRequest } from '../../../../../hooks';
 import { CLOSE_MODAL, openModal, removeCommentAsync } from '../../../../../actions';
 import { selectUserRole } from '../../../../../selectors';
 import { ROLE } from '../../../../../constants/role';
+import { AppDispatch } from '../../../../../store';
+
+interface CommentContainerProps {
+	className?: string;
+	id: string;
+	postId: string;
+	autor: string;
+	content: string;
+	publishedAt: string;
+}
 
 const CommentContainer = ({
 	className,
@@ -19,15 +29,8 @@ const CommentContainer = ({
 	content,
 	publishedAt,
 	postId,
-}: {
-	className?: string;
-	id: string;
-	postId: string;
-	autor: string;
-	content: string;
-	publishedAt: string;
-}) => {
-	const dispatch = useDispatch();
+}: CommentContainerProps) => {
+	const dispatch = useDispatch<AppDispatch>();
 	const requestServer = useServerRequest();
 	const userRole = useSelector(selectUserRole);
 

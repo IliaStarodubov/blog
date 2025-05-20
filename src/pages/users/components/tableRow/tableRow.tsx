@@ -1,13 +1,15 @@
 import { ReactNode } from 'react';
 import styled from 'styled-components';
 
-const TableRowContainer = ({
-	className,
-	children,
-}: {
+interface TableRowContainerProps {
 	className?: string;
-	children: ReactNode;
-}) => <div className={className}>{children}</div>;
+	children?: ReactNode;
+	border?: boolean;
+}
+
+const TableRowContainer = ({ className, children }: TableRowContainerProps) => (
+	<div className={className}>{children}</div>
+);
 
 export const TableRow = styled(TableRowContainer)`
 	display: flex;

@@ -31,7 +31,9 @@ const regFormSchema = yup.object().shape({
 		)
 		.min(6, 'Неверно заполнен пароль. Минимум 6 символов')
 		.max(25, 'Неверно заполнен пароль. Максимум 25 символов'),
-	passcheck: yup.string().oneOf([yup.ref('password'), null], 'Пароли не совпадают'),
+	passcheck: yup
+		.string()
+		.oneOf([yup.ref('password'), undefined], 'Пароли не совпадают'),
 });
 
 const RegistrationCotainer = ({ className }: { className?: string }) => {

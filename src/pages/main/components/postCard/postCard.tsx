@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Icon } from '../../../../components/icon/icon';
+import { Icon } from '../../../../components/icon/Icon';
 import { PATH_CALENDAR, PATH_COMMENT } from '../../../../constants/iconsPath';
 import { Link } from 'react-router-dom';
 

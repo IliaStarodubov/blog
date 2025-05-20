@@ -18,7 +18,7 @@ const MainContainer = ({ className }: { className?: string }) => {
 
 	useEffect(() => {
 		requestServer('fetchPosts', searchPhrase, page, PAGINATION_LIMIT).then(
-			({ res: { posts, links } }) => {
+			({ res: { posts, links } }: { res: { posts: []; links: string } }) => {
 				setPosts(posts);
 				setLastPage(getLastFromLinks(links));
 			},
@@ -27,7 +27,7 @@ const MainContainer = ({ className }: { className?: string }) => {
 
 	const startDelayesSearch = useMemo(() => debounce(setShouldSearch, 2000), []);
 
-	const onSearch = ({ target }) => {
+	const onSearch = ({ target }: React.ChangeEvent<HTMLInputElement>) => {
 		setSearchPhrase(target.value);
 		startDelayesSearch(!shouldSearch);
 	};

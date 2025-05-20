@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Icon } from '../../../icon/icon';
+import { Icon } from '../../../icon/Icon';
 import {
 	PATH_ARROW,
 	PATH_ARROW1,

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import styled from 'styled-components';
-import { Icon } from '../../../components/icon/icon';
+import { Icon } from '../../../components/icon/Icon';
 import { PATH_SEND } from '../../../constants/iconsPath';
 import { Comment } from './components/comment/comment';
 import { useDispatch, useSelector } from 'react-redux';
@@ -8,6 +8,7 @@ import { selectUserId, selectUserRole } from '../../../selectors';
 import { useServerRequest } from '../../../hooks';
 import { addCommentAsync } from '../../../actions';
 import { ROLE } from '../../../constants/role';
+import { AppDispatch } from '../../../store';
 
 const CommentsContainer = ({
 	className,
@@ -19,7 +20,7 @@ const CommentsContainer = ({
 	postId: string;
 }) => {
 	const [newComment, setNewComment] = useState('');
-	const dispatch = useDispatch();
+	const dispatch = useDispatch<AppDispatch>();
 	const userId = useSelector(selectUserId);
 	const userRole = useSelector(selectUserRole);
 	const requestServer = useServerRequest();
@@ -87,9 +88,5 @@ export const Comments = styled(CommentsContainer)`
 		border-radius: 10px;
 		border: none;
 		box-shadow: 0px 0px 36px 17px rgb(233 233 233 / 82%);
-	}
-
-	& .comments {
-		// width: 545px;
 	}
 `;

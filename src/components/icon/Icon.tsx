@@ -19,7 +19,6 @@ const IconContainer = ({
 	path,
 	path1,
 	path2,
-	isButton,
 }: IconContainerProps) => (
 	<div className={className} onClick={onClick}>
 		<svg

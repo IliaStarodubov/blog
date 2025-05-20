@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Icon } from '../../../components/icon/icon';
+import { Icon } from '../../../components/icon/Icon';
 import { PATH_SAVE, PATH_SAVE1 } from '../../../constants/iconsPath';
 import { Input } from '../../../components/input/input';
 import { SpecialPanel } from '../specialPanel/specialPanel';
@@ -9,6 +9,7 @@ import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { useServerRequest } from '../../../hooks';
 import { savePostAsync } from '../../../actions';
+import { AppDispatch } from '../../../store';
 
 interface PostContentState {
 	id: string;
@@ -27,7 +28,7 @@ const PostFormContainer = ({
 }) => {
 	const [imageUrlValue, setImageUrlValue] = useState(imageUrl);
 	const [titleValue, setTitleValue] = useState(title);
-	const contentRef = useRef(null);
+	const contentRef = useRef<HTMLDivElement>(null);
 
 	useLayoutEffect(() => {
 		setImageUrlValue(imageUrl);
@@ -36,10 +37,10 @@ const PostFormContainer = ({
 
 	const requestServer = useServerRequest();
 	const navigate = useNavigate();
-	const dispatch = useDispatch();
+	const dispatch = useDispatch<AppDispatch>();
 
 	const onSave = () => {
-		const newContent = sanitizeContent(contentRef.current.innerHTML);
+		const newContent = sanitizeContent(contentRef.current?.innerHTML);
 
 		dispatch(
 			savePostAsync(requestServer, {
@@ -48,11 +49,13 @@ const PostFormContainer = ({
 				title: titleValue,
 				content: newContent,
 			}),
-		).then(({ id }) => navigate(`/post/${id}`));
+		).then(({ id }: { id: string }) => navigate(`/post/${id}`));
 	};
 
-	const onImageChange = ({ target }) => setImageUrlValue(target.value);
-	const onTitleChange = ({ target }) => setTitleValue(target.value);
+	const onImageChange = ({ target }: React.ChangeEvent<HTMLInputElement>) =>
+		setImageUrlValue(target.value);
+	const onTitleChange = ({ target }: React.ChangeEvent<HTMLInputElement>) =>
+		setTitleValue(target.value);
 
 	return (
 		<div className={className}>

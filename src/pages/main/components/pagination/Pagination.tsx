@@ -2,17 +2,19 @@ import styled from 'styled-components';
 import { Button } from '../../../../components/button/button';
 import { Dispatch, SetStateAction } from 'react';
 
+interface PaginationContainerProps {
+	className?: string;
+	setPage: Dispatch<SetStateAction<number>>;
+	page: number;
+	lastPage: number;
+}
+
 const PaginationContainer = ({
 	className,
 	setPage,
 	page,
 	lastPage,
-}: {
-	className?: string;
-	setPage: Dispatch<SetStateAction<number>>;
-	page: number;
-	lastPage: number;
-}) => {
+}: PaginationContainerProps) => {
 	return (
 		<div className={className}>
 			<Button disabled={page === 1} onClick={() => setPage(1)}>

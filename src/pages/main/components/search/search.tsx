@@ -1,18 +1,16 @@
 import styled from 'styled-components';
 import { Input } from '../../../../components/input/input';
-import { Icon } from '../../../../components/icon/icon';
+import { Icon } from '../../../../components/icon/Icon';
 import { PATH_SEARCH } from '../../../../constants/iconsPath';
 import { ChangeEventHandler } from 'react';
 
-const SearchContainer = ({
-	className,
-	onChange,
-	searchPhrase,
-}: {
+interface SearchContainerProps {
 	className?: string;
 	searchPhrase: string;
 	onChange: ChangeEventHandler;
-}) => {
+}
+
+const SearchContainer = ({ className, onChange, searchPhrase }: SearchContainerProps) => {
 	return (
 		<div className={className}>
 			<Input value={searchPhrase} onChange={onChange} placeholder="Поиск..." />

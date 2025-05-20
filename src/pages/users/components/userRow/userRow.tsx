@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Icon } from '../../../../components/icon/icon';
+import { Icon } from '../../../../components/icon/Icon';
 import { PATH_DELETE, PATH_SAVE, PATH_SAVE1 } from '../../../../constants/iconsPath';
 import { TableRow } from '../tableRow/tableRow';
 import { useState } from 'react';

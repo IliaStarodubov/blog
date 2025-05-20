@@ -7,12 +7,7 @@ interface ButtonContainerProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 	width?: string;
 }
 
-const ButtonContainer = ({
-	children,
-	className,
-	width,
-	...props
-}: ButtonContainerProps) => {
+const ButtonContainer = ({ children, className, ...props }: ButtonContainerProps) => {
 	return (
 		<button className={className} {...props}>
 			{children}

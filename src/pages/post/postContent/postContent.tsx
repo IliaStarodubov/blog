@@ -1,12 +1,12 @@
 import styled from 'styled-components';
 import { H2 } from '../../../components/h2/h2';
-import { Icon } from '../../../components/icon/icon';
+import { Icon } from '../../../components/icon/Icon';
 import { PATH_EDIT, PATH_EDIT1 } from '../../../constants/iconsPath';
 import { SpecialPanel } from '../specialPanel/specialPanel';
 import { useNavigate } from 'react-router-dom';
 
 interface PostContentState {
-	id?: string;
+	id: string;
 	title?: string;
 	imageUrl?: string | undefined;
 	publishedAt?: string;

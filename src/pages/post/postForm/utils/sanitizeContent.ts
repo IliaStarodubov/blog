@@ -1,5 +1,5 @@
-export const sanitizeContent = (content) =>
-	content
+export const sanitizeContent = (content?: string) =>
+	(content || '')
 		.replaceAll('&nbsp;', ' ')
 		.replace(/ +/, ' ')
 		.replaceAll('<div><br></div>', '\n')
