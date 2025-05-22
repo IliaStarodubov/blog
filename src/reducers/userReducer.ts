@@ -1,13 +1,6 @@
-import { ACTION_TYPE, ActionType } from '../actions';
+import { ACTION_TYPE } from '../actions';
 import { ROLE } from '../constants/role';
 import { UserState } from '../types/store';
-
-// export interface UserState {
-// 	id: string | null;
-// 	login: string | null;
-// 	roleId: number;
-// 	session: string | null;
-// }
 
 const initialState: UserState = {
 	id: null,
@@ -16,7 +9,7 @@ const initialState: UserState = {
 	session: null,
 };
 
-export const userReducer = (state: UserState = initialState, action: ActionType) => {
+export const userReducer = (state: UserState = initialState, action) => {
 	switch (action.type) {
 		case ACTION_TYPE.SET_USER:
 			return {

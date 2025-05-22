@@ -1,6 +1,5 @@
 // src/types/store.ts
 
-import { User } from './models'; // Импортируем модели
 import { Post, Comment } from './models';
 
 // Состояние пользователя
@@ -8,7 +7,7 @@ export interface UserState {
 	id: string | null;
 	login: string | null;
 	roleId: number;
-	session: Session | null;
+	session: string | null;
 }
 
 // Состояние постов
